@@ -1,0 +1,36 @@
+main: uk.co.deixel.deixutils.DeixUtils
+name: DeixUtils
+version: 1.4
+api-version: 1.15
+commands:
+  nethercoords:
+    description: Show the coordinates to place a portal in the other dimention to make it end up at your current coordinates.
+    usage: /nethercoords
+  saycoords:
+    description: Say your current block coords in chat.
+    usage: /saycoords
+  togglediscord:
+    description: Disable sending and listening for Discord messages.
+    usage: /togglediscord
+    permission: deixutils.cmds.togglediscord
+  config:
+    description: Set a plugin config setting.
+    usage: /config <setting> <value>
+    permission: deixutils.cmds.config
+permissions:
+  deixutils.*:
+    description: All permissions for plugin
+    default: true
+    children:
+      deixutils.cmds: true
+  deixutils.cmds:
+    description: All command permissions
+    default: true
+    children:
+      deixutils.cmds.*: true
+  deixutils.cmds.config:
+      description: Permission to change plugin settings
+      default: op
+  deixutils.cmds.togglediscord:
+      description: Permission to toggle Discord sending/listening
+      default: op

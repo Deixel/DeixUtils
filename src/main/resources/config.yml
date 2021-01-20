@@ -1,0 +1,11 @@
+listen-to-discord: false
+send-to-discord: false
+pipe-to-discord: /tmp/MinecraftToDiscord
+pipe-from-discord: /tmp/DiscordToMinecraft
+sleep-percent: 25
+player-only-pressure-plate: true
+discord:
+  join: true
+  leave: true
+  chat: true
+  death: true
