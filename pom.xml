@@ -6,7 +6,7 @@
 
   <groupId>uk.co.deixel.deixutils</groupId>
   <artifactId>DeixUtils</artifactId>
-  <version>1.4-SNAPSHOT</version>
+  <version>1.16.5-01-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>DeixUtils</name>
@@ -29,7 +29,7 @@
       <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
       </dependency>
           <dependency>
