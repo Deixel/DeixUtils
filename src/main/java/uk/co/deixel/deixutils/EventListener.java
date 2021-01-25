@@ -65,10 +65,25 @@ public class EventListener implements Listener {
     boolean skippedToMorning = false;
     BukkitTask skipTask;
 
+    public void debugBeds() {
+        plugin.getLogger().info("DEBUG INFO FOR BEDS");
+        plugin.getLogger().info("Players in bed: " + playersInBed );
+        plugin.getLogger().info("skippedToMorning: " + skippedToMorning);
+        plugin.getLogger().info("skipTask set: " + (skipTask != null));
+    }
+
+    public void resetBeds() {
+        playersInBed = 0;
+        skippedToMorning = false;
+        skipTask = null;
+        plugin.getServer().broadcastMessage("Beds reset!");
+    }
+
     @EventHandler
     public void onTimeSkip(TimeSkipEvent event) {
         if(event.getSkipReason().ordinal() == TimeSkipEvent.SkipReason.NIGHT_SKIP.ordinal()) {
             skippedToMorning = true;
+            plugin.getLogger().info("Skipped to morning");
         }
     }
 
@@ -83,8 +98,8 @@ public class EventListener implements Listener {
 
             if(percentInBed >= percentRequired && skipTask == null) {
                 skipTask = new SkipToMorning(event.getBed().getWorld()).runTaskLater(plugin, 100); //Mimic the behaviour of normal beds by waiting 5 seconds before jumping to morning
+                plugin.getLogger().info("Scheduled skip to morning in 5 seconds");
             }
-
         }
     }
 
@@ -92,11 +107,16 @@ public class EventListener implements Listener {
     public void onBedLeave(PlayerBedLeaveEvent event) {
         int playersInWorld = event.getBed().getWorld().getPlayers().size();
         playersInBed--;
+        if(playersInBed < 0) {
+            playersInBed = 0;
+        }
         if(!skippedToMorning) {
             int percentInBed = (int) ( ( (double) playersInBed / (double) playersInWorld ) *100 );
             plugin.getServer().broadcastMessage(event.getPlayer().getName() + " has left bed (" + percentInBed + "%)");
             if(skipTask != null && percentInBed < config.getInt(Settings.SLEEP_PERCENT.toString())) {
                 skipTask.cancel();
+                plugin.getLogger().info("Cancelling skip to morning");
+                skipTask = null;
             }
         }
         else if(skippedToMorning && playersInBed == 0) {
@@ -136,8 +156,22 @@ public class EventListener implements Listener {
     public void sendToDiscord(String msg) {
         if(config.getBoolean(Settings.SEND_TO_DISCORD.toString())) {
             DeixUtils plugin = JavaPlugin.getPlugin(DeixUtils.class);
+
+            /*
+            The pipe is polled every second for new data, then anything waiting is just consumed in one block.
+            This means if >1 message is sent within that polling window, the messages are joined together.
+            To fix this, append each message with a null byte that we can then use to split things up at other end
+            */
+            /*byte[] tempMsgBytes = msg.getBytes();
+            byte[] msgBytes = new byte[tempMsgBytes.length + 1];
+            int i;
+            for(i = 0; i < tempMsgBytes.length; i++) {
+                msgBytes[i] = tempMsgBytes[i];
+            }
+            msgBytes[i] = 0;*/
             try {
                 FileOutputStream outPipe = new FileOutputStream(plugin.getConfig().getString(Settings.PIPE_TO_DISCORD.toString()));
+                //outPipe.write(msgBytes);
                 outPipe.write(msg.getBytes());
                 outPipe.close();
             }

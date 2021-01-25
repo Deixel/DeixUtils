@@ -17,6 +17,14 @@ commands:
     description: Set a plugin config setting.
     usage: /config <setting> <value>
     permission: deixutils.cmds.config
+  resetbeds:
+    description: Reset beds
+    usage: /resetbeds
+    permission: deixutils.cmds.resetbeds
+  debugbeds:
+    description: Reset beds
+    usage: /debugbeds
+    permission: deixutils.cmds.debugbeds
 permissions:
   deixutils.*:
     description: All permissions for plugin
@@ -33,4 +41,10 @@ permissions:
       default: op
   deixutils.cmds.togglediscord:
       description: Permission to toggle Discord sending/listening
+      default: op
+  deixutils.cmds.resetbeds:
+      description: Permission to reset beds
+      default: op
+  deixutils.cmds.debugbeds:
+      description: Permission to debug beds
       default: op

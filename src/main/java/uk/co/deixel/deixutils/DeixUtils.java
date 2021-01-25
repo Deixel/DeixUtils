@@ -16,13 +16,16 @@ public class DeixUtils extends JavaPlugin {
     
     BukkitTask task;
     FileConfiguration config;
+    EventListener listener;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         config = getConfig();
 
-        getServer().getPluginManager().registerEvents(new EventListener(), this);
+        listener = new EventListener();
+
+        getServer().getPluginManager().registerEvents(listener, this);
         getLogger().info("Registered EventListener");
 
         if(config.getBoolean(Settings.LISTEN_TO_DISCORD.toString())) {
@@ -62,6 +65,10 @@ public class DeixUtils extends JavaPlugin {
         if(task != null) {
             task.cancel();
         }        
+    }
+
+    public EventListener getEventListener() {
+        return listener;
     }
 
     public void startDiscord() {
