@@ -9,7 +9,8 @@ public enum Commands {
     TOGGLEDISCORD("togglediscord", new ToggleDiscord()),
     CONFIG("config", new Config(), new Config.ConfigTabCompleter()),
     RESETBEDS("resetbeds", new ResetBeds()),
-    DEBUGBEDS("debugbeds", new DebugBeds());
+    DEBUGBEDS("debugbeds", new DebugBeds()),
+    DEBUGDIFF("debugdiff", new DebugDiff());
 
     private final String name;
     private final CommandExecutor executor;

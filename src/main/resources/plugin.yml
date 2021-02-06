@@ -1,7 +1,7 @@
 main: uk.co.deixel.deixutils.DeixUtils
 name: DeixUtils
-version: 1.4
-api-version: 1.15
+version: 1.3
+api-version: 1.16
 commands:
   nethercoords:
     description: Show the coordinates to place a portal in the other dimention to make it end up at your current coordinates.
@@ -25,6 +25,10 @@ commands:
     description: Reset beds
     usage: /debugbeds
     permission: deixutils.cmds.debugbeds
+  debugdiff:
+    description: Debug difficulty
+    usage: /debugdiff
+    permission: deixutils.cmds.debugdiff
 permissions:
   deixutils.*:
     description: All permissions for plugin

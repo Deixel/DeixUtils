@@ -19,6 +19,8 @@ import org.bukkit.event.world.TimeSkipEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.entity.Player;
+import org.bukkit.Difficulty;
 
 public class EventListener implements Listener {
     DeixUtils plugin = JavaPlugin.getPlugin(DeixUtils.class);
@@ -42,7 +44,17 @@ public class EventListener implements Listener {
             int maxPlayers = plugin.getServer().getMaxPlayers();
             sendToDiscord("**" + playerName + "** joined! (" + onlinePlayers + "/" + maxPlayers+")");
         }
-       }
+        Player player = event.getPlayer();
+        Difficulty difficulty = player.getServer().getWorld("world").getDifficulty();
+        String diff = "Unknown";
+        switch(difficulty) {
+            case PEACEFUL: diff = "Peaceful"; break;
+            case EASY: diff = "Easy"; break;
+            case NORMAL: diff = "Normal"; break;
+            case HARD: diff = "Hard"; break;
+        }
+        player.sendMessage("Welcome " + player.getDisplayName() + "! The difficulty is currently set to " + diff);
+    }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
