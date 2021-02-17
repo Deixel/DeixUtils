@@ -16,5 +16,5 @@ Adds shapeless recipies to recolour wool - 8 wool and a piece of dye will yield 
 ### Skip Nights Without Everyone In Bed
 At night, only 25% (by default) of players in the overworld need to be in bed to skip to morning
 ### Config updates 
-/togglediscord command to enable/disable all Discord integrations
-/config command - update plugin configs on the fly. Includes tab completion!
+- /togglediscord command to enable/disable all Discord integrations
+- /config command - update plugin configs on the fly. Includes tab completion!

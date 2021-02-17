@@ -15,7 +15,7 @@ public class PipeListener extends BukkitRunnable{
         this.plugin = plugin;
         plugin.getLogger().info("Created PipeListener");
         try {
-            inPipe = new FileInputStream(plugin.getConfig().getString(Settings.PIPE_FROM_DISCORD.toString()));
+            inPipe = new FileInputStream(Settings.PIPE_FROM_DISCORD.getString());
         }
         catch (FileNotFoundException ex) {
             plugin.getLogger().severe(ex.toString());

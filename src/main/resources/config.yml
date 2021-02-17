@@ -4,8 +4,12 @@ pipe-to-discord: /tmp/MinecraftToDiscord
 pipe-from-discord: /tmp/DiscordToMinecraft
 sleep-percent: 25
 player-only-pressure-plate: true
+villager-lock: true
+villager-lock-block: minecraft:torch
+stop-enderman-grief: true
 discord:
   join: true
   leave: true
   chat: true
   death: true
+  difficulty: true

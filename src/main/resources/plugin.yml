@@ -1,6 +1,6 @@
 main: uk.co.deixel.deixutils.DeixUtils
 name: DeixUtils
-version: 1.3
+version: 1.4
 api-version: 1.16
 commands:
   nethercoords:

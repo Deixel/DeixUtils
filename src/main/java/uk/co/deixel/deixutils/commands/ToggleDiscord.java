@@ -13,7 +13,7 @@ public class ToggleDiscord implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         DeixUtils plugin = JavaPlugin.getPlugin(DeixUtils.class);
-        if(plugin.getConfig().getBoolean(Settings.LISTEN_TO_DISCORD.toString()) && plugin.getConfig().getBoolean(Settings.SEND_TO_DISCORD.toString())) {
+        if(Settings.LISTEN_TO_DISCORD.get() && Settings.SEND_TO_DISCORD.get()) {
             plugin.stopDiscord();
         }
         else {
