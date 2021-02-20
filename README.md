@@ -18,3 +18,17 @@ At night, only 25% (by default) of players in the overworld need to be in bed to
 ### Config updates 
 - /togglediscord command to enable/disable all Discord integrations
 - /config command - update plugin configs on the fly. Includes tab completion!
+### Endergriefing
+Turn off enderman griefing even if doMobGriefing is turned on
+### Villager-Proof Wooden Doors
+Want to have a house near villagers that they can't get into, but don't want to have an ugly iron door?
+Put a torch (configurable) underneath the block the door is on to make it villager-proof. Example:
+```
+D oor
+D oor
+F loor
+T orch
+```
+N.B This is a bit buggy and only seems to work in one direction, depending on the rotation of the door.
+### Difficulty Signs
+Create a sign with [Difficulty] on the first line, and a difficulty (peaceful/easy/normal/hard) on the second line. Right-clicking on this sign lets anyone change the difficulty
