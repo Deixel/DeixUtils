@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.util.logging.Logger;
 
 import org.bukkit.Difficulty;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.World;
@@ -61,12 +62,20 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
+        int onlinePlayers = plugin.getServer().getOnlinePlayers().size();
+
         if(Settings.DISCORD_LEAVE.get()) {
             String playerName = event.getPlayer().getDisplayName();
-            int onlinePlayers = plugin.getServer().getOnlinePlayers().size();
             int maxPlayers = plugin.getServer().getMaxPlayers();
             sendToDiscord("**" + playerName + "** left! (" + (onlinePlayers - 1) + "/" + maxPlayers+")");
         }
+
+        if(Settings.DIFFICULTY_RESET_ON_LEAVE.get() && onlinePlayers - 1 <= 0) {
+            plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "difficulty easy");
+            if(Settings.DISCORD_DIFFICULTY.get()) {
+                sendToDiscord("Difficulty reset to easy!");
+            }
+         }
     }
 
     @EventHandler
@@ -74,6 +83,9 @@ public class EventListener implements Listener {
         if(Settings.DISCORD_DEATH.get()) {
             sendToDiscord(event.getDeathMessage());
         }
+        Location deathPos = event.getEntity().getLocation();
+        event.getEntity().sendMessage("You died at " + deathPos.getBlockX() + ", " + deathPos.getBlockY() + ", " + deathPos.getBlockZ());
+        plugin.setDeathLocation(event.getEntity(), deathPos);
     }
 
     int playersInBed = 0;

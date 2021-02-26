@@ -10,7 +10,9 @@ public enum Commands {
     CONFIG("config", new Config(), new Config.ConfigTabCompleter()),
     RESETBEDS("resetbeds", new ResetBeds()),
     DEBUGBEDS("debugbeds", new DebugBeds()),
-    DEBUGDIFF("debugdiff", new DebugDiff());
+    DEBUGDIFF("debugdiff", new DebugDiff()),
+    LASTDEATH("lastdeath", new LastDeath()),
+    ;
 
     private final String name;
     private final CommandExecutor executor;

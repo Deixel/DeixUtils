@@ -7,9 +7,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 /**
  * This enum serves 3 purposes
  * 
- * 1. In the code, use Settings.<THING>.toString() to access config settings -
- * removes potential typos 2. Provides config name tab-completion for /config
- * command 3. Provides parameter tab-completion for /config command
+ * 1. In the code, use Settings.<THING>.get()/getString()/getInt() to access config settings - prevents potential typos 
+ * 2. Provides config name tab-completion for /config command
+ * 3. Provides parameter tab-completion for /config command
  */
 
 public enum Settings {
@@ -27,6 +27,7 @@ public enum Settings {
     VILLAGER_LOCK("villager-lock", Type.BOOLEAN),
     VILLAGER_LOCK_BLOCK("villager-lock-block", Type.STRING),
     STOP_ENDERMAN_GRIEF("stop-enderman-grief", Type.BOOLEAN),
+    DIFFICULTY_RESET_ON_LEAVE("difficulty-reset-on-leave", Type.BOOLEAN),
     ;
 
     private final String text;

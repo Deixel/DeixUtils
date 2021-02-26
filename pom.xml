@@ -6,7 +6,7 @@
 
   <groupId>uk.co.deixel.deixutils</groupId>
   <artifactId>DeixUtils</artifactId>
-  <version>1.16.5-04-SNAPSHOT</version>
+  <version>1.16.5-05-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>DeixUtils</name>

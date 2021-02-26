@@ -1,10 +1,15 @@
 package uk.co.deixel.deixutils;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 import org.bukkit.DyeColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice.MaterialChoice;
 import org.bukkit.inventory.ShapelessRecipe;
@@ -17,6 +22,7 @@ public class DeixUtils extends JavaPlugin {
     BukkitTask task;
     FileConfiguration config;
     EventListener listener;
+    HashMap<UUID, Location> lastDeathLocations = new HashMap<UUID, Location>();
 
     @Override
     public void onEnable() {
@@ -89,5 +95,13 @@ public class DeixUtils extends JavaPlugin {
             getLogger().info("Will stop sending and listening for Discord messages...");
             task.cancel();
         }
+    }
+
+    public void setDeathLocation(Player player, Location location) {
+        lastDeathLocations.put(player.getUniqueId(), location);
+    }
+
+    public Location getDeathLocation(Player player) {
+        return lastDeathLocations.get(player.getUniqueId());
     }
 }

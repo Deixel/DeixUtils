@@ -1,6 +1,6 @@
 main: uk.co.deixel.deixutils.DeixUtils
 name: DeixUtils
-version: 1.4
+version: 1.5
 api-version: 1.16
 commands:
   nethercoords:
@@ -29,6 +29,9 @@ commands:
     description: Debug difficulty
     usage: /debugdiff
     permission: deixutils.cmds.debugdiff
+  lastdeath:
+    description: Get the location of your last death
+    usage: /lastdeath
 permissions:
   deixutils.*:
     description: All permissions for plugin
