@@ -71,9 +71,11 @@ public class EventListener implements Listener {
         }
 
         if(Settings.DIFFICULTY_RESET_ON_LEAVE.get() && onlinePlayers - 1 <= 0) {
-            plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "difficulty easy");
-            if(Settings.DISCORD_DIFFICULTY.get()) {
-                sendToDiscord("Difficulty reset to easy!");
+            if(plugin.getServer().getWorld("world").getDifficulty() != Difficulty.EASY) {
+                plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "difficulty easy");
+                if(Settings.DISCORD_DIFFICULTY.get()) {
+                    sendToDiscord("Difficulty reset to easy!");
+                }
             }
          }
     }
