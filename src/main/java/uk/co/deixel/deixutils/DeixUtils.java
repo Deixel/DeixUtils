@@ -22,6 +22,7 @@ public class DeixUtils extends JavaPlugin {
     BukkitTask task;
     FileConfiguration config;
     EventListener listener;
+    PipeListener pipeListener;
     HashMap<UUID, Location> lastDeathLocations = new HashMap<UUID, Location>();
 
     @Override
@@ -83,8 +84,10 @@ public class DeixUtils extends JavaPlugin {
         saveConfig();
 
         getLogger().info("Will send and listen for Discord messages...");
-
-        task = new PipeListener(this).runTaskTimerAsynchronously(this, 0L, 20L);
+        if(pipeListener == null) {
+            pipeListener = new PipeListener(this);
+        }
+        task = pipeListener.runTaskTimerAsynchronously(this, 0L, 20L);
     }
 
     public void stopDiscord() {
