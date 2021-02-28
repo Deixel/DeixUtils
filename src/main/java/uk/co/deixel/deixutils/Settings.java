@@ -50,14 +50,23 @@ public enum Settings {
     }
 
     public boolean get() {
+        if(Type.BOOLEAN != getType()) {
+            throw new WrongTypeException(Type.BOOLEAN, getType());
+        }
         return config.getBoolean(text);
     }
 
     public String getString() {
+        if(Type.STRING != getType()) {
+            throw new WrongTypeException(Type.STRING, getType());
+        }
         return config.getString(text);
     }
 
     public int getInt() {
+        if(Type.INTEGER != getType()) {
+            throw new WrongTypeException(Type.INTEGER, getType());
+        }
         return config.getInt(text);
     }
 
@@ -66,4 +75,10 @@ public enum Settings {
         BOOLEAN,
         INTEGER
     }
-}
+
+    public class WrongTypeException extends RuntimeException {
+        public WrongTypeException(Type expectedType, Type actualType) {
+            super("Attempted to read " + expectedType + " but found " + actualType);
+        }
+    }
+ }
