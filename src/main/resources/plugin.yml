@@ -1,7 +1,7 @@
 main: uk.co.deixel.deixutils.DeixUtils
 name: DeixUtils
-version: 1.5
-api-version: 1.16
+version: 1.6
+api-version: 1.17
 commands:
   nethercoords:
     description: Show the coordinates to place a portal in the other dimention to make it end up at your current coordinates.

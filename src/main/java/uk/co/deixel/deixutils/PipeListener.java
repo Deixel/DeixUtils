@@ -2,7 +2,6 @@ package uk.co.deixel.deixutils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -18,21 +17,6 @@ public class PipeListener extends BukkitRunnable{
         this.plugin = plugin;
         this.logger = plugin.getLogger();
         logger.info("Created PipeListener");
-        /* 
-         * There's a bug in Java where opening a pipe without anything to be read causes a hang.
-         * Fix this by writing something to the pipe before opening it for read.
-         */
-        logger.info("Sending message to prep pipe");
-        try {
-            FileOutputStream tempOutStream = new FileOutputStream(Settings.PIPE_FROM_DISCORD.getString());
-            //outPipe.write(msgBytes);
-            tempOutStream.write("Starting Discord Integration".getBytes());
-            tempOutStream.close();
-        }
-        catch (Exception e) {
-            logger.severe(e.toString());
-        }
-
         
         try {
             inPipe = new FileInputStream(Settings.PIPE_FROM_DISCORD.getString());
